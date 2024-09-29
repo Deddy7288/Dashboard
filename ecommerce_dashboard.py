@@ -95,12 +95,22 @@ plt.title('Top 10 Kategori Produk Berdasarkan Penjualan')
 plt.xticks(rotation=45, ha='right')
 st.pyplot(plt)
 
-# Korelasi antara harga dan skor ulasan
-st.header('Korelasi Harga dan Skor Ulasan')
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=filtered_data, x='price', y='review_score')
-plt.title('Korelasi Harga vs Skor Ulasan')
-st.pyplot(plt)
+# Jumlah pesanan per bulan
+st.header('Jumlah pesanan per bulan')
+monthly_orders = data.groupby('order_month').size().reset_index(name='order_count')
+
+# Ubah order_month menjadi timestamp agar bisa diproses oleh Matplotlib dan Seaborn
+monthly_orders['order_month'] = monthly_orders['order_month'].dt.to_timestamp()
+
+# Visualisasi jumlah pesanan per bulan menggunakan Matplotlib dan Seaborn
+fig, ax = plt.subplots(figsize=(12, 6))
+sns.lineplot(data=monthly_orders, x='order_month', y='order_count', marker='o', ax=ax)
+ax.set_title('Jumlah Pesanan Per Bulan')
+ax.set_xlabel('Bulan')
+ax.set_ylabel('Jumlah Pesanan')
+plt.xticks(rotation=45)
+plt.tight_layout()
+st.pyplot(fig)
 
 # Data RFM Analysis
 rfm_data = {
