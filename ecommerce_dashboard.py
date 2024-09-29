@@ -10,13 +10,13 @@ from datetime import datetime
 # Fungsi untuk memuat data
 @st.cache(allow_output_mutation=True)
 def load_data():
-    orders = pd.read_csv('C:/Users/deddy/orders_dataset.csv')
-    customers = pd.read_csv('C:/Users/deddy/customers_dataset.csv')
-    order_items = pd.read_csv('C:/Users/deddy/order_items_dataset.csv')
-    products = pd.read_csv('C:/Users/deddy/products_dataset.csv')
-    sellers = pd.read_csv('C:/Users/deddy/sellers_dataset.csv')
-    order_reviews = pd.read_csv('C:/Users/deddy/order_reviews_dataset.csv')
-    geolocation = pd.read_csv('C:/Users/deddy/geolocation_dataset.csv')
+    orders = pd.read_csv('orders_dataset.csv')
+    customers = pd.read_csv('customers_dataset.csv')
+    order_items = pd.read_csv('order_items_dataset.csv')
+    products = pd.read_csv('products_dataset.csv')
+    sellers = pd.read_csv('sellers_dataset.csv')
+    order_reviews = pd.read_csv('order_reviews_dataset.csv')
+
 
     # Data cleaning and merging
     orders['order_approved_at'].fillna(orders['order_purchase_timestamp'], inplace=True)
